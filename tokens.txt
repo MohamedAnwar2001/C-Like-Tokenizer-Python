@@ -1,0 +1,17 @@
+Keyword: for
+Special_character: (
+Identifier: e
+Operator: =
+Constant: 1.3e-2
+Special_character: ;
+Identifier: i
+Operator: =
+Constant: 5.1e3
+Special_character: ;
+Identifier: i
+Operator: =
+Identifier: i
+Operator: +
+Constant: 1
+Special_character: )
+Identifier: fun1
