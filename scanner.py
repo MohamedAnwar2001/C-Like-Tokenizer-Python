@@ -41,26 +41,35 @@ def tokenize(input_string):
 
     return tokens
 
-def write_tokens_to_file(tokens):
-    with open("tokens.txt", "w") as file:
+def write_tokens_to_file(tokens, output_file="tokens.txt"):
+    with open(output_file, "w") as file:
         for token in tokens:
             file.write(token + "\n")
 
-def read_tokens_file():
+def read_tokens_from_file(input_file="input.txt"):
     try:
-        with open("tokens.txt", "r") as file:
+        with open(input_file, "r") as file:
+            return file.read()
+    except FileNotFoundError:
+        print("Input file not found.")
+        return None
+
+def tokenize_and_display(input_file="input.txt", output_file="tokens.txt"):
+    input_string = read_tokens_from_file(input_file)
+    if input_string is not None:
+        tokens = tokenize(input_string)
+        write_tokens_to_file(tokens, output_file)
+        read_tokens_file(output_file)
+
+def read_tokens_file(tokens_file="tokens.txt"):
+    try:
+        with open(tokens_file, "r") as file:
             content = file.read()
             print(content)
     except FileNotFoundError:
         print("Tokens file not found.")
 
-def tokenize_and_display(input_string):
-    tokens = tokenize(input_string)
-    write_tokens_to_file(tokens)
-    read_tokens_file()
-
-# Example input string
-input_string = " for (e = 1.3e-2 ; i = 5.1e3; i = i + 1) fun1 "
-
-# Tokenize the input string and display the tokens
-tokenize_and_display(input_string)
+# Example input file
+input_file = "input.txt"
+# Tokenize the input string from the file and display the tokens
+tokenize_and_display(input_file)
